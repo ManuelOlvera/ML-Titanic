@@ -11,9 +11,9 @@ p = zeros(m, 1);
 
 
 for i = 1:m
-	if sigmoid(X(i, :)*theta) >= 0.5
+	if (sigmoid(X(i, :) * theta) >= 0.5)
 		p(i) = 1;
-	elseif
+	else
 		p(i) = 0;
 	endif
 endfor

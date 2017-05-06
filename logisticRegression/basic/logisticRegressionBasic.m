@@ -1,5 +1,9 @@
 function [prediction_train, prediction_test] = logisticRegressionBasic(X, y, X_test, y_test)
 	
+	
+	% X = multinom(X, 9);
+	% X_test = multinom(X_test, 9);
+	
 	% m = Number of examples
 	% n = Number of features
 	[m_train n] = size(X);

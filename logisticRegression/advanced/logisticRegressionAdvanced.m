@@ -5,10 +5,13 @@ function [prediction_train, prediction_test, prediction_val] = logisticRegressio
 	[m n] = size(X);
 	
 	X_split = floor (0.6 * m);
-	X = X([1:X_split], :);
+	
 	X_val = X([X_split:end], :);
-	y = y([1:X_split], :);
 	y_val = y([X_split:end], :);
+	
+	X = X([1:X_split], :);
+	y = y([1:X_split], :);
+	
 
 	new_m = size(X, 1);
 	p = 1;
@@ -93,6 +96,6 @@ function [prediction_train, prediction_test, prediction_val] = logisticRegressio
 
 	prediction_train = mean(double(p_train == y)) * 100;
 	prediction_test = mean(double(p_test == y_test)) * 100;
-	prediction_val = mean(double(p_test == y_val)) * 100;
+	prediction_val = mean(double(p_val == y_val)) * 100;
 	
 end

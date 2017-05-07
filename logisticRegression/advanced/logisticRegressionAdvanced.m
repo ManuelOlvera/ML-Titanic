@@ -51,7 +51,7 @@ function [prediction_train, prediction_test, prediction_val] = logisticRegressio
 	end
 
 	fprintf('Program paused. Press enter to continue.\n');
-	% pause;
+	pause;
 	
 	% Validation for Selecting Lambda
 	% You will now implement validationCurve to test various values of 
@@ -60,18 +60,20 @@ function [prediction_train, prediction_test, prediction_val] = logisticRegressio
 
 	[lambda_vec, error_train, error_val] = validationCurve(X_poly, y, X_poly_val, y_val);
 
-	%close all;
-	%plot(lambda_vec, error_train, lambda_vec, error_val);
-	%legend('Train', 'Cross Validation');
-	%xlabel('lambda');
-	%ylabel('Error');
+	close all;
+	plot(lambda_vec, error_train, lambda_vec, error_val);
+	legend('Train', 'Cross Validation');
+	xlabel('lambda');
+	ylabel('Error');
 
-	%fprintf('lambda\t Train Error\t Validation Error\n');
-	%for i = 1:length(lambda_vec)
-	%	fprintf(' %f\t %f\t %f\n', lambda_vec(i), error_train(i), error_val(i));
-	%end
+	fprintf('lambda\t Train Error\t Validation Error\n');
+	for i = 1:length(lambda_vec)
+		fprintf(' %f\t %f\t %f\n', lambda_vec(i), error_train(i), error_val(i));
+	end
 
-	% fprintf('Best lambda %f \n', lambda_vec(error_val == min(error_val)));
+	[min index] = min(error_val);
+	lambda = lambda_vec(index);
+	fprintf('Best lambda %f \n', lambda);
 	
 	[theta, J] = trainLogisticReg(X_poly, y, lambda);
 	
